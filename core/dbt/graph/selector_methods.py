@@ -973,3 +973,14 @@ class MethodManager:
             )
         cls: Type[SelectorMethod] = self.SELECTOR_METHODS[method]
         return cls(self.manifest, self.previous_state, method_arguments)
+def check_modified_graph(compare_attr, manifests, raw_selection, resource_type):
+    def _selector():
+        return set()
+    return _selector
+
+
+SELECTOR_METHODS = {
+    "modified.compiled": lambda manifests, raw_selection, resource_type: check_modified_graph(
+        "same_compiled", manifests, raw_selection, resource_type
+    )
+}
