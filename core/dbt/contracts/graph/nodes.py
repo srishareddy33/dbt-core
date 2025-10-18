@@ -428,7 +428,18 @@ class CompiledNode(CompiledResource, ParsedNode):
     def depends_on_macros(self):
         return self.depends_on.macros
 
-
+def same_compiled(self,other) -> bool:
+    self_compiled=getattr(self,'compiled_code',None)
+    other_compiled=getattr(other,'compiled_code',None)
+    if self_compiled is None or other_compiled is None:
+        self_hash=getaatr(self,'file_hash',None)
+        other_hash=getattr(other,'file_hash',None)
+        if self_hash is None or other_hash is None:
+            return False
+        return self_hash==other_hash
+    normalized_self=normalize_compiled_sl(self_compiled)
+    normalized_other=normalize_compiled_sql(other_compiled)
+    return normalized_self==normalized_other
 # ====================================
 # CompiledNode subclasses
 # ====================================
